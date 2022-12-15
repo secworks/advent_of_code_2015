@@ -22,16 +22,19 @@ def get_input(filename):
 
 #-------------------------------------------------------------------
 #-------------------------------------------------------------------
-def nice_or_naughty(s):
+def nice_or_naughty_problem1(s):
 #    print("Checkning string", s)
     nice = True
 
     # Rule 1: At least three vowels:
-    rx = r"\b(?:\w*[aeiyouAEIYOU]){3}\w*"
-    if not re.findall(rx, s):
-#        print(s, "does not have at least thee vowels.")
-        nice = False
+    vowels = {'a':0, 'e':0, 'i':0, 'o':0, 'u':0}
+    for c in s:
+        if c in vowels:
+            vowels[c] += 1
 
+    if sum(vowels.values()) < 3:
+#        print(s, "does not have enough vowels.")
+        nice = False
 
     # Rule 2: At least one letter twice in a row:
     double = False
@@ -44,7 +47,7 @@ def nice_or_naughty(s):
 
 
     # Rule 3: ab, cd, pq, or xy not in the string.
-    if 'ab' in s or 'cd' in s or 'pq' in s or 'xy' in s:
+    if ('ab' in s) or ('cd' in s) or ('pq' in s) or ('xy' in s):
 #        print(s, "countains one of the illegal strings.")
         nice = False
 
@@ -61,13 +64,13 @@ def problem1():
     print("Problem 1")
     print("---------")
 
-#    my_input = get_input("day05_input.txt")
-    my_input = get_input("day05_examples.txt")
+    my_input = get_input("day05_input.txt")
+#    my_input = get_input("day05_examples.txt")
 
     num_nice = 0
     for s in my_input:
-        nice_naughty = nice_or_naughty(s)
-#        print(s, "is", nice_naughty)
+        nice_naughty = nice_or_naughty_problem1(s)
+        print(s, "is", nice_naughty)
         if nice_naughty == 'nice':
             num_nice += 1
 
