@@ -70,7 +70,6 @@ def problem1():
     num_nice = 0
     for s in my_input:
         nice_naughty = nice_or_naughty_problem1(s)
-        print(s, "is", nice_naughty)
         if nice_naughty == 'nice':
             num_nice += 1
 
